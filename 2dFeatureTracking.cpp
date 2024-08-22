@@ -56,13 +56,20 @@ int main(int argc, const char *argv[])
         img = cv::imread(imgFullFilename);
         cv::cvtColor(img, imgGray, cv::COLOR_BGR2GRAY);
 
-        //// STUDENT ASSIGNMENT
         //// TASK MP.1 -> replace the following code with ring buffer of size dataBufferSize
-
-        // push image into data frame buffer
+        
+        // Replacing the existing code with a ring buffer
+        // Check if the data buffer is full
+        if (dataBuffer.size() >= dataBufferSize) {
+            // Remove the oldest image from the buffer (the first one in the vector)
+            dataBuffer.erase(dataBuffer.begin());
+        }
+        
+        // Push the new image into the data frame buffer
         DataFrame frame;
         frame.cameraImg = imgGray;
         dataBuffer.push_back(frame);
+        
 
         //// EOF STUDENT ASSIGNMENT
         cout << "#1 : LOAD IMAGE INTO BUFFER done" << endl;
@@ -73,21 +80,50 @@ int main(int argc, const char *argv[])
         vector<cv::KeyPoint> keypoints; // create empty feature list for current image
         string detectorType = "SHITOMASI";
 
-        //// STUDENT ASSIGNMENT
         //// TASK MP.2 -> add the following keypoint detectors in file matching2D.cpp and enable string-based selection based on detectorType
         //// -> HARRIS, FAST, BRISK, ORB, AKAZE, SIFT
 
+       /* DETECT IMAGE KEYPOINTS */
+
+        // extract 2D keypoints from current image
+        vector<cv::KeyPoint> keypoints; // create empty feature list for current image
+        string detectorType = "SHITOMASI"; // change this to test different detectors: "HARRIS", "FAST", "BRISK", "ORB", "AKAZE", "SIFT"
+        
         if (detectorType.compare("SHITOMASI") == 0)
         {
             detKeypointsShiTomasi(keypoints, imgGray, false);
         }
-        else
+        else if (detectorType.compare("HARRIS") == 0)
         {
-            //...
+            detKeypointsHarris(keypoints, imgGray, false);
         }
+        else if (detectorType.compare("FAST") == 0)
+        {
+            detKeypointsFAST(keypoints, imgGray, false);
+        }
+        else if (detectorType.compare("BRISK") == 0)
+        {
+            detKeypointsBRISK(keypoints, imgGray, false);
+        }
+        else if (detectorType.compare("ORB") == 0)
+        {
+            detKeypointsORB(keypoints, imgGray, false);
+        }
+        else if (detectorType.compare("AKAZE") == 0)
+        {
+            detKeypointsAKAZE(keypoints, imgGray, false);
+        }
+        else if (detectorType.compare("SIFT") == 0)
+        {
+            detKeypointsSIFT(keypoints, imgGray, false);
+        }
+        
+        cout << "#2 : DETECT KEYPOINTS done" << endl;
+
+
+        
         //// EOF STUDENT ASSIGNMENT
 
-        //// STUDENT ASSIGNMENT
         //// TASK MP.3 -> only keep keypoints on the preceding vehicle
 
         // only keep keypoints on the preceding vehicle
@@ -95,8 +131,21 @@ int main(int argc, const char *argv[])
         cv::Rect vehicleRect(535, 180, 180, 150);
         if (bFocusOnVehicle)
         {
-            // ...
-        }
+
+
+                vector<cv::KeyPoint> vehicleKeypoints;
+                for (auto it = keypoints.begin(); it != keypoints.end(); ++it)
+                {
+                    // Check if the keypoint is within the vehicle's bounding box
+                    if (vehicleRect.contains(it->pt))
+                    {
+                        vehicleKeypoints.push_back(*it);
+                    }
+                }
+                keypoints = vehicleKeypoints;  // Replace original keypoints with the filtered ones
+            }
+        
+        
 
         //// EOF STUDENT ASSIGNMENT
 
@@ -125,8 +174,9 @@ int main(int argc, const char *argv[])
         //// -> BRIEF, ORB, FREAK, AKAZE, SIFT
 
         cv::Mat descriptors;
-        string descriptorType = "BRISK"; // BRIEF, ORB, FREAK, AKAZE, SIFT
+        string descriptorType = "BRISK"; // You can change this to BRIEF, ORB, FREAK, AKAZE, or SIFT
         descKeypoints((dataBuffer.end() - 1)->keypoints, (dataBuffer.end() - 1)->cameraImg, descriptors, descriptorType);
+    
         //// EOF STUDENT ASSIGNMENT
 
         // push descriptors for current frame to end of data buffer
