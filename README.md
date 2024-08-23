@@ -379,11 +379,6 @@ For the sixth task, we will implement the descriptor distance ratio test as a fi
 
 My Implementation: 
 ```ruby
-#include <opencv2/core.hpp>
-#include <opencv2/features2d.hpp>
-#include <opencv2/xfeatures2d.hpp>
-#include <iostream>
-
 void matchDescriptors(std::vector<cv::KeyPoint> &kPtsSource, std::vector<cv::KeyPoint> &kPtsRef, cv::Mat &descSource, cv::Mat &descRef,
                       std::vector<cv::DMatch> &matches, std::string descriptorType, std::string matcherType, std::string selectorType)
 {
