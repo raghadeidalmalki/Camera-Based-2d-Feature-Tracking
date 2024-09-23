@@ -339,13 +339,15 @@ SIFT Detector
 ## MP.9 - Performance Evaluation
 
 In task 9, the time taken for keypoint detection and extraction was recorded to identify the optimal combination of detector and descriptor based on their efficiency.
-<img width="611" alt="image" src="https://github.com/user-attachments/assets/02888871-360d-4d08-a59b-46a52b8cfd54">
+
+<img width="1118" alt="image" src="https://github.com/user-attachments/assets/e403cb85-38fc-43e6-ab63-98d0f6cd7750">
+
 
 <img width="1076" alt="image" src="https://github.com/user-attachments/assets/1f81286a-fafe-4785-9787-a67c985b39a0">
 
 The results show that the FAST detector significantly outperforms all other detectors regarding execution time for detection. In contrast, the FREAK, AKAZE, and SIFT descriptors generally yield slower detection results.
 
-** Recommendation **
+**Recommendation**
 
 Considering the metrics above, the FAST detector offers exceptional speed in keypoint detection while also achieving a substantial number of detected keypoints with certain descriptors. I recommend the combinations of FAST-BRISK, FAST-ORB, and FAST-BRIEF as my top three choices.
 
