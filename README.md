@@ -315,6 +315,37 @@ For task 7, we were tasked with counting the number of keypoints on the precedin
 
 Number of keypoints and matched keypoints on the preceding vehicle across all 10 images using every combination of detectors and descriptors:
 
+SHITOMASI Detector
 <img width="1114" alt="image" src="https://github.com/user-attachments/assets/7c875a14-fc83-42b6-ac30-61f619076c19">
 
+HARRIS Detector
+<img width="1128" alt="image" src="https://github.com/user-attachments/assets/f2cb872d-c45e-4433-9906-cd09db569504">
+
+FAST Detector
+<img width="1127" alt="image" src="https://github.com/user-attachments/assets/c154b554-7305-44e3-b35c-3e6b96d628ad">
+
+BRISK Detector
+<img width="1144" alt="image" src="https://github.com/user-attachments/assets/d8bf8664-ebfb-436f-9d24-91a74f8761e0">
+
+ORB Detector
+<img width="1144" alt="image" src="https://github.com/user-attachments/assets/12e2a19f-dba6-485f-bde2-5408fe28f90a">
+
+AKAZE Detector
+<img width="1144" alt="image" src="https://github.com/user-attachments/assets/307b23d1-ae6e-453e-b4ff-f5a6ad5ebd57">
+
+SIFT Detector
+<img width="1149" alt="image" src="https://github.com/user-attachments/assets/b9608df8-1205-4d48-b4a8-5d8dd6d5e35b">
+
+## MP.9 - Performance Evaluation
+
+In task 9, the time taken for keypoint detection and extraction was recorded to identify the optimal combination of detector and descriptor based on their efficiency.
+<img width="611" alt="image" src="https://github.com/user-attachments/assets/02888871-360d-4d08-a59b-46a52b8cfd54">
+
+<img width="1076" alt="image" src="https://github.com/user-attachments/assets/1f81286a-fafe-4785-9787-a67c985b39a0">
+
+The results show that the FAST detector significantly outperforms all other detectors regarding execution time for detection. In contrast, the FREAK, AKAZE, and SIFT descriptors generally yield slower detection results.
+
+** Recommendation **
+
+Considering the metrics above, the FAST detector offers exceptional speed in keypoint detection while also achieving a substantial number of detected keypoints with certain descriptors. I recommend the combinations of FAST-BRISK, FAST-ORB, and FAST-BRIEF as my top three choices.
 
