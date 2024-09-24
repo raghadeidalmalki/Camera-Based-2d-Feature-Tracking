@@ -310,7 +310,7 @@ void matchDescriptors(std::vector<cv::KeyPoint> &kPtsSource, std::vector<cv::Key
 
 ## MP.7 & MP.8 - Performance Evaluation
 
-For task 7, we were tasked with counting the number of keypoints on the preceding vehicle across all 10 images. For task 9, we needed to count the number of matched keypoints for these images, utilizing every possible combination of detectors and descriptors. During the matching phase, we used the FLANN matcher as an alternative to the Brute Force method, with the descriptor distance ratio set to 0.8.
+For task 7, we were tasked with counting the number of keypoints on the preceding vehicle across all 10 images. For task 9, we needed to count the number of matched keypoints for these images, utilizing every possible combination of detectors and descriptors. During the matching phase, we used the KNN and FLANN matcher as an alternative to the Brute Force method, with the descriptor distance ratio set to 0.8.
 
 
 Number of keypoints and matched keypoints on the preceding vehicle across all 10 images using every combination of detectors and descriptors:
